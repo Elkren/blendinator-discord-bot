@@ -11,4 +11,4 @@ client.on("message", (msg) => {
   setupPum(msg);
 });
 
-client.login("NzYwMTc3MTU5Mzg5ODM5Mzgx.X3IQJg.KkEBnKL5MhJAUJPTiQ5FKN_TgJ4");
+client.login(process.env.BOT_KEY);

@@ -1,5 +1,5 @@
-const { MessageAttachment } = require("discord.js");
 const fetch = require("node-fetch");
+const { MessageAttachment } = require("discord.js");
 
 const setupGifMessage = (msg) => {
   if (msg.content.startsWith("!gif ")) {
@@ -8,7 +8,7 @@ const setupGifMessage = (msg) => {
     console.log(query);
     console.log(id);
     fetch(
-      `https://api.giphy.com/v1/gifs/search?api_key=pgKlFeWfTnNeIJMxdMqNMENWt4Al4LXB&q=${query}&limit=1&offset=${id}&rating=pg-13&lang=en`
+      `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_KEY}&q=${query}&limit=1&offset=${id}&rating=pg-13&lang=en`
     )
       .then((response) => response.json())
       .then((body) => {
