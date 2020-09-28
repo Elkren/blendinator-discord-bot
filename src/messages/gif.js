@@ -10,7 +10,6 @@ const setupGifMessage = (msg) => {
     )
       .then((response) => response.json())
       .then((body) => {
-        console.log(body.data[0].images);
         msg.channel.send(
           new MessageAttachment(body.data[0].images.original.url)
         );
