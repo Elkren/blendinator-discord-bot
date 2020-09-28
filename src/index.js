@@ -1,6 +1,9 @@
-const { client } = require("./client.js");
-const { setupGifMessage } = require("./gif.js");
-const { setupPum } = require("./pum.js");
+const { Client } = require("discord.js");
+
+const { setupGifMessage } = require("./messages/gif.js");
+const { setupPum } = require("./messages/pum.js");
+
+const client = new Client();
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
