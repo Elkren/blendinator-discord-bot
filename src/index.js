@@ -2,6 +2,9 @@ const { Client } = require("discord.js");
 
 const { setupGifMessage } = require("./messages/gif.js");
 const { setupPum } = require("./messages/pum.js");
+const { setupDab } = require("./messages/dab.js");
+const { setupBongo } = require("./messages/bongo.js");
+const { setupHelpCommand } = require("./messages/commands.js");
 
 const client = new Client();
 
@@ -13,6 +16,7 @@ client.on("message", (msg) => {
   setupGifMessage(msg);
   setupBongo(msg);
   setupDab(msg);
+  setupHelpCommand(msg);
   setupPum(msg);
 });
 

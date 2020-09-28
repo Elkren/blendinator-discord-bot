@@ -1,5 +1,5 @@
 const setupDab = (msg) => {
-  if (msg.content.startsWith("!gif ")) {
+  if (msg.content === "!dab") {
     msg.channel.send("ヽ( •_•)ᕗ");
   }
 };
