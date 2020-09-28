@@ -11,6 +11,7 @@ client.on("ready", () => {
 
 client.on("message", (msg) => {
   setupGifMessage(msg);
+  setupBongo(msg);
   setupPum(msg);
 });
 
