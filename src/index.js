@@ -5,6 +5,7 @@ const { setupPum } = require("./messages/pum.js");
 const { setupDab } = require("./messages/dab.js");
 const { setupBongo } = require("./messages/bongo.js");
 const { setupHelpCommand } = require("./messages/commands.js");
+const { setupRero } = require("./messages/rero.js");
 
 const client = new Client();
 
@@ -13,6 +14,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (msg) => {
+  setupRero(msg);
   setupGifMessage(msg);
   setupBongo(msg);
   setupDab(msg);
