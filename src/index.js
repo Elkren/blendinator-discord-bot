@@ -7,19 +7,31 @@ const { setupHelpCommand } = require("./messages/commands.js");
 const { setupBlend } = require("./messages/blend.js");
 
 const client = new Client();
+const talkedRecently = new Set();
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const talkedRecently = new Set();
-
 client.on("message", (msg) => {
-  setupGifMessage(msg);
-  setupPog(msg);
-  setupDab(msg);
-  setupHelpCommand(msg);
-  setupBlend(msg, client, talkedRecently);
+  if (msg.content.includes("`")) {
+    if (talkedRecently.has(msg.author.id)) {
+      msg.channel.send("Cooldown 10 sec");
+      msg.delete();
+      return;
+    }
+
+    talkedRecently.add(msg.author.id);
+    setTimeout(() => {
+      talkedRecently.delete(msg.author.id);
+    }, 10000);
+
+    setupGifMessage(msg);
+    setupPog(msg);
+    setupDab(msg);
+    setupHelpCommand(msg);
+    setupBlend(msg, client);
+  }
 });
 
 client.login(process.env.BOT_KEY);
