@@ -1,8 +1,13 @@
 const setupBlend = async (msg, client) => {
   if (msg.content.includes("`blend")) {
-    var user = await client.users.fetch(
-      msg.content.split("!").pop().split(">")[0]
-    );
+
+    if(!msg.content.includes("@<!"))
+      msg.channel.send("You need to @ someone to Blend, baka");
+      return;
+    }
+    
+    var userId = msg.content.split("!").pop().split(">")[0];
+    var user = await client.users.fetch(userId);
 
     const guild = client.guilds.cache.get("696150952025129081");
     const member = guild.member(user);
