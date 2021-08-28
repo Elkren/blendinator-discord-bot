@@ -1,7 +1,7 @@
 const setupBlend = async (msg, client) => {
   if (!msg.content.includes("`blend")) return;
 
-  if (!msg.content.includes("@<!")) {
+  if (!msg.content.includes("<!")) {
     msg.channel.send("You need to @ someone to Blend, baka");
     return;
   }
