@@ -12,12 +12,14 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
+const talkedRecently = new Set();
+
 client.on("message", (msg) => {
   setupGifMessage(msg);
   setupPog(msg);
   setupDab(msg);
   setupHelpCommand(msg);
-  setupBlend(msg, client);
+  setupBlend(msg, client, talkedRecently);
 });
 
 client.login(process.env.BOT_KEY);
