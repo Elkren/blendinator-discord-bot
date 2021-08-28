@@ -2,9 +2,9 @@ const fetch = require("node-fetch");
 const { MessageAttachment } = require("discord.js");
 
 const setupGifMessage = (msg) => {
-  if (msg.content.startsWith("!gif ")) {
+  if (msg.content.startsWith("`gif ")) {
     var id = Math.round(Math.random() * Math.floor(25));
-    var query = msg.content.replace("!gif ", "");
+    var query = msg.content.replace("`gif ", "");
     fetch(
       `https://api.giphy.com/v1/gifs/search?api_key=${process.env.GIPHY_KEY}&q=${query}&limit=1&offset=${id}&rating=pg-13&lang=en`
     )
