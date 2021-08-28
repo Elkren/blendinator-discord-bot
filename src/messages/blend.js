@@ -1,4 +1,11 @@
 const setupBlend = async (msg, client) => {
+  let blending = false;
+  if (blending) {
+    msg.channel.send("Chill out satan");
+    return;
+  }
+
+  blending = true;
   if (msg.content.includes("`blend")) {
     var user = await client.users.fetch(
       msg.content.split("!").pop().split(">")[0]
@@ -22,6 +29,7 @@ const setupBlend = async (msg, client) => {
 
         if (channelId == channelIds[3]) {
           member.voice.setChannel(originalChannelId);
+          blending = false;
         }
       }, 100);
     });
