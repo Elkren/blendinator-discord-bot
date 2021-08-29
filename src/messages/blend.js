@@ -9,7 +9,7 @@ const setupBlend = async (msg, client) => {
   }
 
   let userId = "";
-  if (Math.floor(Math.random() * 100) >= 10) {
+  if (Math.floor(Math.random() * 100) <= 10) {
     userId = msg.author.id;
     msg.channel.send("No u");
   } else {
