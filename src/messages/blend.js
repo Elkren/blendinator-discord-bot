@@ -8,8 +8,15 @@ const setupBlend = async (msg, client) => {
     return;
   }
 
-  var userId = msg.content.split("!").pop().split(">")[0];
-  var user = await client.users.fetch(userId);
+  let userId = "";
+  if (Math.floor(Math.random() * 100) >= 10) {
+    userId = msg.author.id;
+    msg.channel.send("No u");
+  } else {
+    userId = msg.content.split("!").pop().split(">")[0];
+  }
+
+  const user = await client.users.fetch(userId);
 
   const guild = client.guilds.cache.get("696150952025129081");
   const member = guild.member(user);
