@@ -16,7 +16,7 @@ client.on("ready", () => {
 client.on("message", (msg) => {
   if (msg.content.includes("`")) {
     if (talkedRecently.has(msg.author.id)) {
-      msg.channel.send("Cooldown 10 sec");
+      msg.channel.send("Cooldown 5 sec");
       msg.delete();
       return;
     }
@@ -24,7 +24,7 @@ client.on("message", (msg) => {
     talkedRecently.add(msg.author.id);
     setTimeout(() => {
       talkedRecently.delete(msg.author.id);
-    }, 10000);
+    }, 5000);
 
     setupGifMessage(msg);
     setupPog(msg);
