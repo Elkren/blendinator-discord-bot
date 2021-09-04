@@ -1,5 +1,5 @@
 const setupBlend = async (msg, client) => {
-  if (!msg.content.includes("`blend")) return;
+  if (!msg.content.startsWith("`blend")) return;
 
   console.log(msg.content);
 

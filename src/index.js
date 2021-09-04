@@ -14,7 +14,7 @@ client.on("ready", () => {
 });
 
 client.on("message", (msg) => {
-  if (msg.content.includes("`")) {
+  if (msg.content.startsWith("`")) {
     if (talkedRecently.has(msg.author.id)) {
       msg.channel.send("Cooldown 10 sec");
       msg.delete();
