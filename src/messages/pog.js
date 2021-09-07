@@ -1,5 +1,5 @@
 const setupPog = (msg) => {
-  if (msg.content.includes("pog")) {
+  if (msg.content === "`pog") {
     msg.react("🅿");
     msg.react("🅾");
     msg.react("🇬");
