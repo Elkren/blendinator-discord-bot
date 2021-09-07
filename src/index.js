@@ -38,12 +38,14 @@ client.on("message", async (msg) => {
     setupDab(msg);
     setupHelpCommand(msg);
     setupBlend(msg, client);
-    setupRestoreMessages(msg, deletedMessages, clearDeletedMessages);
+    setupRestoreMessages(msg, deletedMessages, filterDeletedMessages);
   }
 });
 
-function clearDeletedMessages() {
-  deletedMessages = [];
+function filterDeletedMessages(channelId) {
+  if (deletedMessages.length > 0) {
+    deletedMessages = deletedMessages.filter((x) => x.channelId != channelId);
+  }
 }
 
 client.on("messageDelete", (message) => {
@@ -54,6 +56,7 @@ client.on("messageDelete", (message) => {
 
     deletedMessages.push({
       embed: embed,
+      channelId: message.channel.id,
       time: Date.now(),
     });
   }

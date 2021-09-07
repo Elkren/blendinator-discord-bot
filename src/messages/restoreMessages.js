@@ -1,14 +1,16 @@
 const setupRestoreMessages = async (
   msg,
   deletedMessages,
-  clearDeletedMessages
+  filterDeletedMessages
 ) => {
   if (msg.content === "`restore") {
-    if (deletedMessages.length > 0) {
+    console.log(deletedMessages);
+    console.log(msg.channel.id);
+    if (deletedMessages.some((e) => e.channelId === msg.channel.id)) {
       deletedMessages.forEach(({ embed }) => {
         msg.channel.send({ embed });
       });
-      clearDeletedMessages();
+      filterDeletedMessages(msg.channel.id);
     } else {
       const botMessage = await msg.channel.send("No recently deleted messages");
       const botMessageToDelete = await msg.channel.messages.fetch(
