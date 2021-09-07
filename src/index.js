@@ -39,7 +39,7 @@ client.on("message", (msg) => {
 });
 
 client.on("messageDelete", (message) => {
-  if (message.author.id !== "760177159389839381") {
+  if (message.author.id !== process.env.CLIENT_ID) {
     const embed = new MessageEmbed()
       .setAuthor(`${message.author.username}`, message.author.avatarURL())
       .setDescription(message.content);

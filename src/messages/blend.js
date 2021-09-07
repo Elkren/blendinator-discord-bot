@@ -2,7 +2,7 @@ const setupBlend = async (msg, client) => {
   if (!msg.content.startsWith("`blend")) return;
 
   if (!msg.content.includes("<@!")) {
-    msg.channel.send("You need to @ someone to Blend, baka");
+    msg.channel.send("You need to @ someone to Blend");
     return;
   }
 
@@ -16,17 +16,12 @@ const setupBlend = async (msg, client) => {
 
   const user = await client.users.fetch(userId);
 
-  const guild = client.guilds.cache.get("696150952025129081");
+  const guild = client.guilds.cache.get(process.env.GUILD_ID);
   const member = guild.member(user);
 
   const originalChannelId = member.voice.channel.id;
 
-  var channelIds = [
-    "729013123360751717",
-    "729013283989749841",
-    "827661871381086220",
-    "807188837146165338",
-  ];
+  var channelIds = process.env.CHANNEL_IDS.split(",");
 
   channelIds.forEach((channelId) => {
     setTimeout(() => {
