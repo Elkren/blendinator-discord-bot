@@ -13,10 +13,17 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("message", (msg) => {
+client.on("message", async (msg) => {
   if (msg.content.startsWith("`")) {
     if (talkedRecently.has(msg.author.id)) {
-      msg.channel.send("Cooldown 10 sec");
+      const cooldownMessage = await msg.channel.send("Cooldown 10 sec");
+      const messageToDelete = await msg.channel.messages.fetch(
+        cooldownMessage.id
+      );
+      setTimeout(() => {
+        messageToDelete.delete();
+      }, 10000);
+
       msg.delete();
       return;
     }
