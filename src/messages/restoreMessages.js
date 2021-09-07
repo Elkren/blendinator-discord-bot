@@ -1,10 +1,6 @@
 const { selfDestructMessage } = require("../helpers.js");
 
-const setupRestoreMessages = async (
-  msg,
-  deletedMessages,
-  filterDeletedMessages
-) => {
+const setupRestoreMessages = (msg, deletedMessages, filterDeletedMessages) => {
   if (msg.content === "`restore") {
     if (deletedMessages.some((e) => e.channelId === msg.channel.id)) {
       deletedMessages.forEach((message) => {

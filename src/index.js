@@ -17,7 +17,7 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on("message", async (msg) => {
+client.on("message", (msg) => {
   if (msg.content.startsWith("`")) {
     if (talkedRecently.has(msg.author.id)) {
       selfDestructMessage("Cooldown 10 sec", msg);
