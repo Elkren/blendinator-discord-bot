@@ -4,11 +4,11 @@ const setupRestoreMessages = async (
   filterDeletedMessages
 ) => {
   if (msg.content === "`restore") {
-    console.log(deletedMessages);
-    console.log(msg.channel.id);
     if (deletedMessages.some((e) => e.channelId === msg.channel.id)) {
-      deletedMessages.forEach(({ embed }) => {
-        msg.channel.send({ embed });
+      deletedMessages.forEach((message) => {
+        if (message.channelId === msg.channel.id) {
+          msg.channel.send({ embed: message.embed });
+        }
       });
       filterDeletedMessages(msg.channel.id);
     } else {
