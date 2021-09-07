@@ -1,9 +1,11 @@
 const { Client, MessageEmbed } = require("discord.js");
 
-const { setupGifMessage } = require("./messages/gif.js");
+const { selfDestructMessage } = require("./helpers.js");
+
+const { setupGif } = require("./messages/gif.js");
 const { setupDab } = require("./messages/dab.js");
 const { setupPog } = require("./messages/pog.js");
-const { setupHelpCommand } = require("./messages/commands.js");
+const { setupHelp } = require("./messages/help.js");
 const { setupBlend } = require("./messages/blend.js");
 const { setupRestoreMessages } = require("./messages/restoreMessages.js");
 
@@ -18,13 +20,7 @@ client.on("ready", () => {
 client.on("message", async (msg) => {
   if (msg.content.startsWith("`")) {
     if (talkedRecently.has(msg.author.id)) {
-      const cooldownMessage = await msg.channel.send("Cooldown 10 sec");
-      const messageToDelete = await msg.channel.messages.fetch(
-        cooldownMessage.id
-      );
-      setTimeout(() => {
-        messageToDelete.delete();
-      }, 10000);
+      selfDestructMessage("Cooldown 10 sec", msg);
       return;
     }
 
@@ -33,20 +29,14 @@ client.on("message", async (msg) => {
       talkedRecently.delete(msg.author.id);
     }, 10000);
 
-    setupGifMessage(msg);
+    setupGif(msg);
     setupPog(msg);
     setupDab(msg);
-    setupHelpCommand(msg);
+    setupHelp(msg, client);
     setupBlend(msg, client);
     setupRestoreMessages(msg, deletedMessages, filterDeletedMessages);
   }
 });
-
-function filterDeletedMessages(channelId) {
-  if (deletedMessages.length > 0) {
-    deletedMessages = deletedMessages.filter((x) => x.channelId != channelId);
-  }
-}
 
 client.on("messageDelete", (message) => {
   if (message.author.id !== "760177159389839381") {
@@ -68,5 +58,11 @@ setInterval(function () {
     return time < message.time + 5000 * 60;
   });
 }, 500);
+
+function filterDeletedMessages(channelId) {
+  if (deletedMessages.length > 0) {
+    deletedMessages = deletedMessages.filter((x) => x.channelId != channelId);
+  }
+}
 
 client.login(process.env.BOT_KEY);

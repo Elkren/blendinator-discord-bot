@@ -1,3 +1,5 @@
+const { selfDestructMessage } = require("../helpers.js");
+
 const setupRestoreMessages = async (
   msg,
   deletedMessages,
@@ -12,13 +14,7 @@ const setupRestoreMessages = async (
       });
       filterDeletedMessages(msg.channel.id);
     } else {
-      const botMessage = await msg.channel.send("No recently deleted messages");
-      const botMessageToDelete = await msg.channel.messages.fetch(
-        botMessage.id
-      );
-      setTimeout(() => {
-        botMessageToDelete.delete();
-      }, 10000);
+      selfDestructMessage("No recently deleted messages", msg);
     }
   }
 };

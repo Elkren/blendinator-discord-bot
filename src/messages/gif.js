@@ -1,7 +1,7 @@
 const fetch = require("node-fetch");
 const { MessageAttachment } = require("discord.js");
 
-const setupGifMessage = (msg) => {
+const setupGif = (msg) => {
   if (msg.content.startsWith("`gif ")) {
     var id = Math.round(Math.random() * Math.floor(25));
     var query = msg.content.replace("`gif ", "");
@@ -24,5 +24,5 @@ const setupGifMessage = (msg) => {
 };
 
 module.exports = {
-  setupGifMessage,
+  setupGif,
 };
